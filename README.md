@@ -17,7 +17,8 @@ client >>
 cd client
 npm i
 quasar dev
-----------------------------
+
+------------------------------------------------------------------------------
 server >>
 cd server
 npm i
@@ -25,6 +26,6 @@ nodemon server.js
 ```
 
 
-## License
+## Support
 
-[MIT](https://choosealicense.com/licenses/mit/)
+Sivakrishna <sivakrishnacoc@gmail.com>
