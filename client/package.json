@@ -1,19 +1,20 @@
 {
-  "name": "roombooking.io",
+  "name": "client",
   "version": "0.0.1",
-  "description": "FE for room booking",
-  "productName": "roombooking.io",
-  "author": "sivakrishnacode <sivakrishnacoc@gmail.com>",
+  "description": "client for bookingapp",
+  "productName": "client",
+  "author": "sivakrishna <sivakrishnacoc@gmail.com>",
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.vue ./",
     "format": "prettier --write \"**/*.{js,vue,css,html,md,json}\" --ignore-path .gitignore",
-    "test": "echo \"No test specified\" && exit 0"
+    "test": "echo \"No test specified\" && exit 0",
+    "dev": "quasar dev",
+    "build": "quasar build"
   },
   "dependencies": {
     "axios": "^1.2.1",
-    "pinia": "^2.0.11",
-    "@quasar/extras": "^1.0.0",
+    "@quasar/extras": "^1.16.4",
     "quasar": "^2.6.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0"
@@ -23,7 +24,7 @@
     "eslint-plugin-vue": "^9.0.0",
     "eslint-config-prettier": "^8.1.0",
     "prettier": "^2.5.1",
-    "@quasar/app-vite": "^1.0.0",
+    "@quasar/app-vite": "^1.3.0",
     "autoprefixer": "^10.4.2",
     "postcss": "^8.4.14"
   },

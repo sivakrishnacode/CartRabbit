@@ -1,6 +1,6 @@
-# clientapp (client)
+# client (client)
 
-client for room booking
+client for bookingapp
 
 ## Install the dependencies
 ```bash
