@@ -9,6 +9,7 @@ import updateRoom from "./updateroom.js";
 import deleteRoom from "./deleteroom.js";
 import getRooms from "./getrooms.js";
 
+
 import booking from './booking.js'
 
 export default {
@@ -21,5 +22,6 @@ export default {
   updateRoom,
   deleteRoom,
   getRooms,
+
   booking
 };

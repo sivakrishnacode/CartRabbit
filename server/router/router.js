@@ -12,6 +12,10 @@ router.put('/updateroom',middlewares.authOwner, handlers.updateRoom)
 router.delete('/deleteroom',middlewares.authOwner, handlers.deleteRoom)
 router.get('/getrooms', handlers.getRooms)
 
+router.post('/uploading', middlewares.upload.single('file'), (req, res) => {
+    res.json({file : req.file})
+} )
+
 
 // customer routes
 router.post('/login/customer', handlers.loginCustomer)

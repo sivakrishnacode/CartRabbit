@@ -340,7 +340,7 @@
                   ></q-input>
                   <q-file
                     outlined
-                    v-model="room.photos"
+                    v-model="fileData"
                     label="Pick files"
                     multiple
                   />
@@ -378,11 +378,13 @@
 import { useRouter } from "vue-router";
 import { onMounted, ref } from "vue";
 import { api } from "src/boot/axios";
+import { useQuasar } from "quasar";
 
 export default {
   name: "homeOwner",
   setup() {
     const router = useRouter();
+     const $q = useQuasar();
 
     const userDetails = JSON.parse(localStorage.getItem("owner_userinfo"));
     const apikey = localStorage.getItem("owner_apikey");
@@ -421,6 +423,8 @@ export default {
     const addRoomDialog = ref(false);
     const editRoomDialog = ref(false);
     const editDetails = ref({});
+
+    const fileData = ref(null)
 
     function getRooms() {
       roomList.value = [];
@@ -472,24 +476,7 @@ export default {
           console.log(err);
         });
 
-      if (room.value.photos.length == 0) {
-        console.log("Photo not found");
-      } else {
-        api({
-          url: "/api/uploadphotos",
-          method: "POST",
-          params: params,
-        })
-          .then((res) => {
-            console.log(res.data);
-            // res.data.map((data) => {
-            //   roomList.value.push(data);
-            // });
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
+        uploadPhoto()
     }
 
     const formateTimeStamp = (timeStamp) => {
@@ -539,10 +526,46 @@ export default {
         .then((res) => {
           getRooms();
           editRoomDialog.value = false;
+           $q.notify({
+              message: "Room Updated Succesfully",
+              color: "green",
+              icon: "done",
+              position: "top-right",
+            });
         })
         .catch((err) => {
           console.log(err);
         });
+    }
+    
+   async  function uploadPhoto(){
+      if(!fileData.value){
+        console.log('not found');
+      }else{
+
+
+        const formData = new FormData()
+
+        formData.append('file', fileData.value[0])
+        
+        await api({
+          method: 'POST',
+          url: '/api/uploading',
+          data : formData ,
+          
+           headers: {
+             'Content-Type': 'multipart/form-data'
+            }
+          })
+          .then((res) => {
+              console.log(res);
+          })
+        .catch((err) => {
+            console.log(err);
+           })
+
+      }
+ 
     }
 
     function deleteRoom(id) {
@@ -603,6 +626,8 @@ export default {
       editDetails,
       editTriger,
       deleteRoom,
+      fileData,
+      uploadPhoto,
       formateTimeStamp,
 
       // header
