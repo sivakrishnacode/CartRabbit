@@ -10,8 +10,6 @@ JWT_SECRET='mYSeCreTkeYY'
 
 ## Installation
 
-
-
 ```bash
 client >> 
 cd client
